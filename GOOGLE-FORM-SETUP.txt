@@ -1,0 +1,16 @@
+CODEX PORTFOLIO — GOOGLE FORM DELIVERY SETUP
+
+The contact form is present in the website, but it will not deliver messages until you connect a Google Apps Script Web App endpoint.
+
+1) Open https://script.google.com and create a new project.
+2) Copy the contents of google-apps-script.gs into the editor.
+3) Replace PUT_YOUR_EMAIL_HERE with the Google account/email where you want inquiry notifications.
+4) Save, then Deploy > New deployment > select Web app.
+5) Execute as: Me. Access: Anyone (the public form needs access). Review the Google deployment security prompt.
+6) Deploy, authorize, and copy the Web App URL ending in /exec.
+7) Open script.js and replace PASTE_GOOGLE_APPS_SCRIPT_WEB_APP_URL_HERE with that URL.
+8) Publish the updated portfolio files. Form submissions will be recorded in a Google Sheet named CODEX Portfolio Inquiries, and emailed to the configured address.
+
+Instagram: https://www.instagram.com/codex_1_1/
+TikTok: https://www.tiktok.com/@codex_s
+GitHub links removed from contact/social area.
