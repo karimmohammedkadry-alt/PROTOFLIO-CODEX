@@ -1,73 +1,514 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="theme-color" content="#f3e5c7" />
-  <meta name="description" content="Karim Mohammed (CODEX), frontend developer in Cairo, Egypt. I build responsive websites and thoughtful digital experiences using HTML, CSS and JavaScript." />
-  <meta name="keywords" content="Karim Mohammed, CODEX, frontend developer, web developer, HTML, CSS, JavaScript, portfolio, Cairo, Egypt" />
-  <meta name="author" content="Karim Mohammed" />
-  <meta name="robots" content="index, follow, max-image-preview:large" />
-  <meta property="og:type" content="website" />
-  <meta property="og:title" content="CODEX® — Karim Mohammed | Frontend Developer" />
-  <meta property="og:description" content="Frontend developer crafting thoughtful digital experiences. Explore selected work by Karim Mohammed." />
-  <meta property="og:site_name" content="CODEX® Portfolio" />
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="CODEX® — Karim Mohammed | Frontend Developer" />
-  <meta name="twitter:description" content="Frontend developer crafting thoughtful digital experiences." />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f3e5c7">
+
+  <meta name="description" content="Karim Mohammed (CODEX), frontend developer in Cairo, Egypt. I build responsive websites and thoughtful digital experiences using HTML, CSS and JavaScript.">
+  <meta name="keywords" content="Karim Mohammed, CODEX, frontend developer, web developer, HTML, CSS, JavaScript, portfolio, Cairo, Egypt">
+  <meta name="author" content="Karim Mohammed">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+
+  <link rel="canonical" href="https://YOUR-DOMAIN.com/">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="CODEX® — Karim Mohammed | Frontend Developer">
+  <meta property="og:description" content="Frontend developer crafting thoughtful digital experiences. Explore selected work by Karim Mohammed.">
+  <meta property="og:site_name" content="CODEX® Portfolio">
+  <meta property="og:url" content="https://YOUR-DOMAIN.com/">
+  <meta property="og:image" content="https://YOUR-DOMAIN.com/assets/og-image.jpg">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="CODEX® — Karim Mohammed">
+  <meta name="twitter:description" content="Frontend developer crafting thoughtful digital experiences.">
+  <meta name="twitter:image" content="https://YOUR-DOMAIN.com/assets/og-image.jpg">
+
   <title>CODEX® — Karim Mohammed</title>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
   <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css" />
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%2358152c'/%3E%3Ctext x='32' y='43' text-anchor='middle' font-family='Arial' font-size='34' font-weight='bold' fill='%23f3e5c7'%3EC%3C/text%3E%3C/svg%3E
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"Karim Mohammed","alternateName":"CODEX","jobTitle":"Frontend Developer","address":{"@type":"PostalAddress","addressLocality":"Cairo","addressCountry":"EG"},"telephone":["+201066517988","+201125093884"],"sameAs":["https://www.instagram.com/codex_1_1/","https://www.tiktok.com/@codex_s"]}</script>
+
+  <link rel="stylesheet" href="style.css">
+
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%2358152c'/%3E%3Ctext x='32' y='43' text-anchor='middle' font-family='Arial' font-size='34' font-weight='bold' fill='%23f3e5c7'%3EC%3C/text%3E%3C/svg%3E">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Karim Mohammed",
+    "alternateName": "CODEX",
+    "jobTitle": "Frontend Developer",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Cairo",
+      "addressCountry": "EG"
+    },
+    "telephone": [
+      "+201066517988",
+      "+201125093884"
+    ],
+    "sameAs": [
+      "https://www.instagram.com/codex_1_1/",
+      "https://www.tiktok.com/@codex_s"
+    ]
+  }
+  </script>
 </head>
+
 <body>
-  <div class="cursor-dot"></div>
-  <div class="cursor-ring"></div>
-  <div class="intro" aria-hidden="true"><div class="intro-mark">C<span>〈/〉</span>D</div><div class="intro-line"><span></span></div><p>LOADING IDEAS INTO REALITY</p></div>
+
+  <div class="cursor-dot" aria-hidden="true"></div>
+  <div class="cursor-ring" aria-hidden="true"></div>
+
+  <div class="intro" aria-hidden="true">
+    <div class="intro-mark">C<span>〈/〉</span>D</div>
+    <div class="intro-line"><span></span></div>
+    <p>LOADING IDEAS INTO REALITY</p>
+  </div>
+
   <header class="topbar">
-    <a class="brand" href="#top" aria-label="CODEX home">CODEX<span>®</span></a>
-    <nav><a href="#work">WORK <sup>07</sup></a><a href="#playground">PLAY</a><a href="#about">ABOUT</a><a href="#contact">CONTACT <span class="arrow">↗</span></a></nav>
-    <button class="menu-toggle" aria-label="Toggle menu"><span></span><span></span></button>
+    <a class="brand" href="#top" aria-label="CODEX home">
+      CODEX<span>®</span>
+    </a>
+
+    <nav aria-label="Main navigation">
+      <a href="#work">WORK <sup>07</sup></a>
+      <a href="#playground">PLAY</a>
+      <a href="#about">ABOUT</a>
+      <a href="#contact">CONTACT <span class="arrow">↗</span></a>
+    </nav>
+
+    <button class="menu-toggle" type="button" aria-label="Toggle menu" aria-expanded="false">
+      <span></span>
+      <span></span>
+    </button>
   </header>
+
   <main id="top">
+
+    <!-- HERO -->
+
     <section class="hero">
-      <div class="hero-meta"><span>INDEPENDENT FRONTEND DEVELOPER</span><span>CAIRO, EGYPT · <span id="local-time">--:--</span></span></div>
-      <div class="hero-title-wrap"><h1 class="hero-title"><span>I BUILD</span><span class="outlined">DIGITAL</span><span>WORLDS<span class="period">.</span></span></h1><div class="hero-stamp"><div class="stamp-inner">C<br><small>〈 / 〉</small><br>D</div><span>DESIGN<br>DEVELOP<br>DETAIL</span></div></div>
-      <div class="hero-bottom"><p>Turning ideas into thoughtful<br>digital experiences.</p><a class="scroll-cue" href="#work"><span class="scroll-wheel"></span>SCROLL TO EXPLORE</a><span class="hero-index">[ 001 — 007 ]</span></div>
-      <div class="hero-scribble" aria-hidden="true">CREATIVE CODE / HUMAN DETAIL / DIGITAL CRAFT</div>
-    </section>
-    <section class="work section" id="work">
-      <div class="section-head reveal"><p class="eyebrow">SELECTED WORK — 2024 / 2026</p><h2>Some things<br>I've <em>made.</em></h2><p class="section-note">A collection of experiments, ideas<br>and digital experiences.</p></div>
-      <div class="project-list">
-        <a class="project project-large reveal" href="https://flora-fashion-hijab.vercel.app" target="_blank" rel="noopener"><div class="project-visual flora"><div class="mock-browser"><div class="browser-bar"><i></i><i></i><i></i><b>flora / fashion</b></div><div class="flora-layout"><small>FLORA — MODEST FASHION</small><strong>Elegance<br>in every<br><i>detail.</i></strong><span class="fashion-circle">F<br>✳</span><div class="fake-btn">EXPLORE COLLECTION ↗</div></div></div><span class="project-tag">E-COMMERCE / FASHION</span></div><div class="project-info"><h3>Flora Fashion</h3><span>01 / 07</span><span class="project-arrow">↗</span></div></a>
-        <a class="project reveal" href="https://karimmohammedkadry-alt.github.io/HIK-DEV/" target="_blank" rel="noopener"><div class="project-visual hik"><div class="hik-art"><span class="hik-kicker">HIK — DIGITAL SYSTEMS</span><strong>BUILD<br>WHAT'S<br><i>NEXT.</i></strong><span class="orbit">✳</span><span class="grid-code">0101<br>0110<br>1001</span></div><span class="project-tag">TECH / DEVELOPMENT</span></div><div class="project-info"><h3>HIK-DEV</h3><span>02 / 07</span><span class="project-arrow">↗</span></div></a>
-        <a class="project reveal" href="https://karimmohammedkadry-alt.github.io/WATER/" target="_blank" rel="noopener"><div class="project-visual water"><div class="water-art"><small>PURE BY NATURE</small><strong>WATER<br>IS A <i>FEELING.</i></strong><div class="water-orb"></div><span>W / 01</span></div><span class="project-tag">BRAND / PRODUCT</span></div><div class="project-info"><h3>WATER</h3><span>03 / 07</span><span class="project-arrow">↗</span></div></a>
-        <a class="project project-large reveal" href="https://untitled-2259.ai.studio/" target="_blank" rel="noopener"><div class="project-visual untitled"><div class="untitled-art"><span>AN EXERCISE IN POSSIBILITY</span><strong>UN<br><i>TITLED</i></strong><div class="u-shape">✳</div><small>NO RULES. JUST FORM.</small></div><span class="project-tag">EXPERIMENT / CREATIVE</span></div><div class="project-info"><h3>Untitled</h3><span>04 / 07</span><span class="project-arrow">↗</span></div></a>
-        <a class="project reveal" href="https://arkanrealestate.vercel.app/" target="_blank" rel="noopener"><div class="project-visual arkan"><div class="arkan-art"><small>ARKAN / REAL ESTATE</small><strong>SPACE TO<br><i>BELONG.</i></strong><div class="arch"><div></div></div><span>LIVE BEYOND EXPECTATIONS</span></div><span class="project-tag">REAL ESTATE / LUXURY</span></div><div class="project-info"><h3>Arkan Real Estate</h3><span>05 / 07</span><span class="project-arrow">↗</span></div></a>
-        <a class="project reveal" href="https://karimmohammedkadry-alt.github.io/soul-restaurant-/" target="_blank" rel="noopener"><div class="project-visual soul"><div class="soul-art"><small>GOOD FOOD. GOOD MOOD.</small><strong>SOUL<span>.</span></strong><div class="plate">✦</div><span>RESTAURANT & EXPERIENCE</span></div><span class="project-tag">HOSPITALITY / FOOD</span></div><div class="project-info"><h3>Soul Restaurant</h3><span>06 / 07</span><span class="project-arrow">↗</span></div></a>
-        <a class="project project-large reveal" href="https://athar-eosin-tau.vercel.app/" target="_blank" rel="noopener"><div class="project-visual athar"><div class="athar-art"><small>ATHAR — ARCHITECTURE</small><strong>FORM<br>FOLLOWS<br><i>FEELING.</i></strong><div class="athar-shape"><div></div><div></div><div></div></div><span>SPACES THAT STAY WITH YOU</span></div><span class="project-tag">ARCHITECTURE / DESIGN</span></div><div class="project-info"><h3>Athar</h3><span>07 / 07</span><span class="project-arrow">↗</span></div></a>
+
+      <div class="hero-meta">
+        <span>INDEPENDENT FRONTEND DEVELOPER</span>
+        <span>CAIRO, EGYPT · <span id="local-time">--:--</span></span>
       </div>
-      <div class="work-end reveal"><span>THAT'S THE CURRENT COLLECTION.</span><span>MORE IN THE MAKING ↗</span></div>
+
+      <div class="hero-title-wrap">
+        <h1 class="hero-title">
+          <span>I BUILD</span>
+          <span class="outlined">DIGITAL</span>
+          <span>WORLDS<span class="period">.</span></span>
+        </h1>
+
+        <div class="hero-stamp">
+          <div class="stamp-inner">
+            C<br>
+            <small>〈 / 〉</small><br>
+            D
+          </div>
+          <span>DESIGN<br>DEVELOP<br>DETAIL</span>
+        </div>
+      </div>
+
+      <div class="hero-bottom">
+        <p>Turning ideas into thoughtful<br>digital experiences.</p>
+        <a class="scroll-cue" href="#work">
+          <span class="scroll-wheel"></span>
+          SCROLL TO EXPLORE
+        </a>
+        <span class="hero-index">[ 001 — 007 ]</span>
+      </div>
+
+      <div class="hero-scribble" aria-hidden="true">
+        CREATIVE CODE / HUMAN DETAIL / DIGITAL CRAFT
+      </div>
+
     </section>
-    <section class="playground section" id="playground"><div class="play-head reveal"><p class="eyebrow">INTERACTION LAB / 001</p><h2>PLAY WITH<br><em>THE WEB.</em></h2><p>Move your pointer. Break the stillness.</p></div><div class="play-card reveal" id="play-card"><span class="play-card-label">CODEX / EXPERIMENT</span><div class="play-card-orb"></div><h3>MOVE<br>WITH <em>INTENT.</em></h3><span class="play-card-footer">A SMALL INTERACTIVE STUDY ↗</span></div></section>
-    <section class="about section" id="about"><div class="about-top reveal"><p class="eyebrow">A LITTLE ABOUT THE MAKER</p><span>CODEX® — PERSONAL PRACTICE</span></div><h2 class="about-statement reveal">I DON'T JUST<br>WRITE <span>CODE.</span><br>I SHAPE HOW<br>IT <em>FEELS.</em></h2><div class="about-bottom reveal"><p>I'm Karim — a frontend developer drawn to the intersection of design, interaction and technology. I like thoughtful details, playful motion, and interfaces that feel as good as they look.</p><div class="skills"><span>HTML</span><span>CSS</span><span>JAVASCRIPT</span><span>RESPONSIVE DESIGN</span><span>UI / UX</span><span>INTERACTION</span></div></div></section>
-    <section class="manifesto"><div class="manifesto-mark">〈 / 〉</div><p class="reveal">GOOD DESIGN ISN'T<br>JUST WHAT YOU <i>SEE.</i><br>IT'S WHAT YOU <i>FEEL.</i></p><span>CODEX FIELD NOTE / 001</span></section>
-    <section class="contact section" id="contact"><div class="contact-head reveal"><p class="eyebrow">HAVE A GOOD IDEA?</p><h2>LET'S MAKE<br>IT <em>REAL.</em></h2></div><button class="contact-link whatsapp-choice-trigger" type="button" data-open-whatsapp>SEND ME A MESSAGE <span>↗</span></button><div class="contact-grid reveal"><div class="contact-block"><small>CALL / WHATSAPP</small><a href="tel:+201066517988">+20 106 651 7988</a><a href="tel:+201125093884">+20 112 509 3884</a><button class="whatsapp-link whatsapp-choice-trigger" type="button" data-open-whatsapp>WHATSAPP ME ↗</button></div><div class="contact-block"><small>FOLLOW / SOCIAL</small><a href="https://www.instagram.com/codex_1_1/" target="_blank" rel="noopener noreferrer" id="instagram-link">INSTAGRAM ↗</a><a href="https://www.tiktok.com/@codex_s" target="_blank" rel="noopener noreferrer" id="tiktok-link">TIKTOK ↗</a></div></div><div class="contact-form-wrap reveal"><p class="eyebrow">PROJECT INQUIRY / 002</p><h3>Tell me about<br>your <em>idea.</em></h3><form id="contact-form" class="contact-form"><label>Your name<input name="name" autocomplete="name" required maxlength="120" placeholder="Name"></label><label>Phone number <span class="required-mark">*</span><input name="phone" type="tel" autocomplete="tel" inputmode="tel" required pattern="[+0-9()\s-]{8,20}" maxlength="20" placeholder="01xxxxxxxxx" title="Enter a valid phone number"></label><label>Email address (optional)<input name="email" type="email" autocomplete="email" maxlength="160" placeholder="you@example.com"></label><label>Project type<select name="projectType" required><option value="" disabled selected>Choose a project type</option><option>Landing page</option><option>Portfolio / Personal website</option><option>Business website</option><option>E-commerce</option><option>UI implementation</option><option>Other</option></select></label><label>Budget (optional)<select name="budget"><option value="Not specified">Prefer not to say</option><option>Under EGP 5,000</option><option>EGP 5,000–10,000</option><option>EGP 10,000–20,000</option><option>EGP 20,000+</option></select></label><label class="form-full">Project details<textarea name="details" rows="5" maxlength="4000" required placeholder="What are you looking to build?"></textarea></label><button class="contact-link form-submit" type="submit">SEND INQUIRY <span>↗</span></button><p id="form-status" class="form-status" role="status" aria-live="polite">Google Sheets connection setup is required before messages can be delivered.</p></form></div><div class="contact-bottom"><span>CODEX® — KARIM MOHAMMED</span><span>© 2026 / BUILT WITH INTENTION</span></div></section>
+
+    <!-- WORK -->
+
+    <section class="work section" id="work">
+
+      <div class="section-head reveal">
+        <p class="eyebrow">SELECTED WORK — 2024 / 2026</p>
+        <h2>Some things<br>I've <em>made.</em></h2>
+        <p class="section-note">
+          A collection of experiments, ideas<br>
+          and digital experiences.
+        </p>
+      </div>
+
+      <div class="project-list">
+
+        <a class="project project-large reveal" href="https://flora-fashion-hijab.vercel.app" target="_blank" rel="noopener noreferrer">
+          <div class="project-visual flora">
+            <div class="mock-browser">
+              <div class="browser-bar">
+                <i></i><i></i><i></i>
+                <b>flora / fashion</b>
+              </div>
+              <div class="flora-layout">
+                <small>FLORA — MODEST FASHION</small>
+                <strong>Elegance<br>in every<br><i>detail.</i></strong>
+                <span class="fashion-circle">F<br>✳</span>
+                <div class="fake-btn">EXPLORE COLLECTION ↗</div>
+              </div>
+            </div>
+            <span class="project-tag">E-COMMERCE / FASHION</span>
+          </div>
+          <div class="project-info">
+            <h3>Flora Fashion</h3>
+            <span>01 / 07</span>
+            <span class="project-arrow">↗</span>
+          </div>
+        </a>
+
+        <a class="project reveal" href="https://karimmohammedkadry-alt.github.io/HIK-DEV/" target="_blank" rel="noopener noreferrer">
+          <div class="project-visual hik">
+            <div class="hik-art">
+              <span class="hik-kicker">HIK — DIGITAL SYSTEMS</span>
+              <strong>BUILD<br>WHAT'S<br><i>NEXT.</i></strong>
+              <span class="orbit">✳</span>
+              <span class="grid-code">0101<br>0110<br>1001</span>
+            </div>
+            <span class="project-tag">TECH / DEVELOPMENT</span>
+          </div>
+          <div class="project-info">
+            <h3>HIK-DEV</h3>
+            <span>02 / 07</span>
+            <span class="project-arrow">↗</span>
+          </div>
+        </a>
+
+        <a class="project reveal" href="https://karimmohammedkadry-alt.github.io/WATER/" target="_blank" rel="noopener noreferrer">
+          <div class="project-visual water">
+            <div class="water-art">
+              <small>PURE BY NATURE</small>
+              <strong>WATER<br>IS A <i>FEELING.</i></strong>
+              <div class="water-orb"></div>
+              <span>W / 01</span>
+            </div>
+            <span class="project-tag">BRAND / PRODUCT</span>
+          </div>
+          <div class="project-info">
+            <h3>WATER</h3>
+            <span>03 / 07</span>
+            <span class="project-arrow">↗</span>
+          </div>
+        </a>
+
+        <a class="project project-large reveal" href="https://untitled-2259.ai.studio/" target="_blank" rel="noopener noreferrer">
+          <div class="project-visual untitled">
+            <div class="untitled-art">
+              <span>AN EXERCISE IN POSSIBILITY</span>
+              <strong>UN<br><i>TITLED</i></strong>
+              <div class="u-shape">✳</div>
+              <small>NO RULES. JUST FORM.</small>
+            </div>
+            <span class="project-tag">EXPERIMENT / CREATIVE</span>
+          </div>
+          <div class="project-info">
+            <h3>Untitled</h3>
+            <span>04 / 07</span>
+            <span class="project-arrow">↗</span>
+          </div>
+        </a>
+
+        <a class="project reveal" href="https://arkanrealestate.vercel.app/" target="_blank" rel="noopener noreferrer">
+          <div class="project-visual arkan">
+            <div class="arkan-art">
+              <small>ARKAN / REAL ESTATE</small>
+              <strong>SPACE TO<br><i>BELONG.</i></strong>
+              <div class="arch"><div></div></div>
+              <span>LIVE BEYOND EXPECTATIONS</span>
+            </div>
+            <span class="project-tag">REAL ESTATE / LUXURY</span>
+          </div>
+          <div class="project-info">
+            <h3>Arkan Real Estate</h3>
+            <span>05 / 07</span>
+            <span class="project-arrow">↗</span>
+          </div>
+        </a>
+
+        <a class="project reveal" href="https://karimmohammedkadry-alt.github.io/soul-restaurant-/" target="_blank" rel="noopener noreferrer">
+          <div class="project-visual soul">
+            <div class="soul-art">
+              <small>GOOD FOOD. GOOD MOOD.</small>
+              <strong>SOUL<span>.</span></strong>
+              <div class="plate">✦</div>
+              <span>RESTAURANT & EXPERIENCE</span>
+            </div>
+            <span class="project-tag">HOSPITALITY / FOOD</span>
+          </div>
+          <div class="project-info">
+            <h3>Soul Restaurant</h3>
+            <span>06 / 07</span>
+            <span class="project-arrow">↗</span>
+          </div>
+        </a>
+
+        <a class="project project-large reveal" href="https://athar-eosin-tau.vercel.app/" target="_blank" rel="noopener noreferrer">
+          <div class="project-visual athar">
+            <div class="athar-art">
+              <small>ATHAR — ARCHITECTURE</small>
+              <strong>FORM<br>FOLLOWS<br><i>FEELING.</i></strong>
+              <div class="athar-shape">
+                <div></div><div></div><div></div>
+              </div>
+              <span>SPACES THAT STAY WITH YOU</span>
+            </div>
+            <span class="project-tag">ARCHITECTURE / DESIGN</span>
+          </div>
+          <div class="project-info">
+            <h3>Athar</h3>
+            <span>07 / 07</span>
+            <span class="project-arrow">↗</span>
+          </div>
+        </a>
+
+      </div>
+
+      <div class="work-end reveal">
+        <span>THAT'S THE CURRENT COLLECTION.</span>
+        <span>MORE IN THE MAKING ↗</span>
+      </div>
+
+    </section>
+
+    <!-- PLAYGROUND -->
+
+    <section class="playground section" id="playground">
+
+      <div class="play-head reveal">
+        <p class="eyebrow">INTERACTION LAB / 001</p>
+        <h2>PLAY WITH<br><em>THE WEB.</em></h2>
+        <p>Move your pointer. Break the stillness.</p>
+      </div>
+
+      <div class="play-card reveal" id="play-card">
+        <span class="play-card-label">CODEX / EXPERIMENT</span>
+        <div class="play-card-orb"></div>
+        <h3>MOVE<br>WITH <em>INTENT.</em></h3>
+        <span class="play-card-footer">A SMALL INTERACTIVE STUDY ↗</span>
+      </div>
+
+    </section>
+
+    <!-- ABOUT -->
+
+    <section class="about section" id="about">
+
+      <div class="about-top reveal">
+        <p class="eyebrow">A LITTLE ABOUT THE MAKER</p>
+        <span>CODEX® — PERSONAL PRACTICE</span>
+      </div>
+
+      <h2 class="about-statement reveal">
+        I DON'T JUST<br>
+        WRITE <span>CODE.</span><br>
+        I SHAPE HOW<br>
+        IT <em>FEELS.</em>
+      </h2>
+
+      <div class="about-bottom reveal">
+        <p>
+          I'm Karim — a frontend developer drawn to the intersection
+          of design, interaction and technology. I like thoughtful
+          details, playful motion, and interfaces that feel as good
+          as they look.
+        </p>
+
+        <div class="skills">
+          <span>HTML</span>
+          <span>CSS</span>
+          <span>JAVASCRIPT</span>
+          <span>RESPONSIVE DESIGN</span>
+          <span>UI / UX</span>
+          <span>INTERACTION</span>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- MANIFESTO -->
+
+    <section class="manifesto">
+      <div class="manifesto-mark">〈 / 〉</div>
+      <p class="reveal">
+        GOOD DESIGN ISN'T<br>
+        JUST WHAT YOU <i>SEE.</i><br>
+        IT'S WHAT YOU <i>FEEL.</i>
+      </p>
+      <span>CODEX FIELD NOTE / 001</span>
+    </section>
+
+    <!-- CONTACT -->
+
+    <section class="contact section" id="contact">
+
+      <div class="contact-head reveal">
+        <p class="eyebrow">HAVE A GOOD IDEA?</p>
+        <h2>LET'S MAKE<br>IT <em>REAL.</em></h2>
+      </div>
+
+      <button class="contact-link whatsapp-choice-trigger" type="button" data-open-whatsapp>
+        SEND ME A MESSAGE <span>↗</span>
+      </button>
+
+      <div class="contact-grid reveal">
+
+        <div class="contact-block">
+          <small>CALL / WHATSAPP</small>
+
+          <a href="tel:+201066517988">+20 106 651 7988</a>
+          <a href="tel:+201125093884">+20 112 509 3884</a>
+
+          <button class="whatsapp-link whatsapp-choice-trigger" type="button" data-open-whatsapp>
+            WHATSAPP ME ↗
+          </button>
+        </div>
+
+        <div class="contact-block">
+          <small>FOLLOW / SOCIAL</small>
+
+          <a href="https://www.instagram.com/codex_1_1/" target="_blank" rel="noopener noreferrer" id="instagram-link">
+            INSTAGRAM ↗
+          </a>
+
+          <a href="https://www.tiktok.com/@codex_s" target="_blank" rel="noopener noreferrer" id="tiktok-link">
+            TIKTOK ↗
+          </a>
+        </div>
+
+      </div>
+
+      <div class="contact-form-wrap reveal">
+
+        <p class="eyebrow">PROJECT INQUIRY / 002</p>
+
+        <h3>Tell me about<br>your <em>idea.</em></h3>
+
+        <form id="contact-form" class="contact-form">
+
+          <label>
+            Your name
+            <input name="name" type="text" autocomplete="name" required maxlength="120" placeholder="Name">
+          </label>
+
+          <label>
+            Phone number <span class="required-mark">*</span>
+            <input name="phone" type="tel" autocomplete="tel" inputmode="tel" required pattern="[+0-9()\s-]{8,20}" maxlength="20" placeholder="01xxxxxxxxx" title="Enter a valid phone number">
+          </label>
+
+          <label>
+            Email address (optional)
+            <input name="email" type="email" autocomplete="email" maxlength="160" placeholder="you@example.com">
+          </label>
+
+          <label>
+            Project type
+            <select name="projectType" required>
+              <option value="" disabled selected>Choose a project type</option>
+              <option>Landing page</option>
+              <option>Portfolio / Personal website</option>
+              <option>Business website</option>
+              <option>E-commerce</option>
+              <option>UI implementation</option>
+              <option>Other</option>
+            </select>
+          </label>
+
+          <label>
+            Budget (optional)
+            <select name="budget">
+              <option value="Not specified">Prefer not to say</option>
+              <option>Under EGP 5,000</option>
+              <option>EGP 5,000–10,000</option>
+              <option>EGP 10,000–20,000</option>
+              <option>EGP 20,000+</option>
+            </select>
+          </label>
+
+          <label class="form-full">
+            Project details
+            <textarea name="details" rows="5" maxlength="4000" required placeholder="What are you looking to build?"></textarea>
+          </label>
+
+          <button class="contact-link form-submit" type="submit">
+            SEND INQUIRY <span>↗</span>
+          </button>
+
+          <p id="form-status" class="form-status" role="status" aria-live="polite"></p>
+
+        </form>
+
+      </div>
+
+      <div class="contact-bottom">
+        <span>CODEX® — KARIM MOHAMMED</span>
+        <span>© 2026 / BUILT WITH INTENTION</span>
+      </div>
+
+    </section>
+
   </main>
-  <footer><a href="#top">BACK TO TOP ↑</a><span>DESIGNED & DEVELOPED BY KARIM</span><button class="theme-toggle" id="theme-toggle" type="button">SWITCH THEME ◐</button><span>CODEX®</span></footer>
+
+  <!-- FOOTER -->
+
+  <footer>
+    <a href="#top">BACK TO TOP ↑</a>
+    <span>DESIGNED & DEVELOPED BY KARIM</span>
+    <button class="theme-toggle" id="theme-toggle" type="button" aria-pressed="false">
+      SWITCH THEME ◐
+    </button>
+    <span>CODEX®</span>
+  </footer>
+
+  <!-- WHATSAPP MODAL -->
+
   <dialog class="whatsapp-modal" id="whatsapp-modal" aria-labelledby="whatsapp-modal-title">
+
     <div class="whatsapp-modal-inner">
-      <button class="modal-close" type="button" aria-label="Close WhatsApp options" data-close-whatsapp>×</button>
+
+      <button class="modal-close" type="button" aria-label="Close WhatsApp options" data-close-whatsapp>
+        ×
+      </button>
+
       <p class="eyebrow">CHOOSE A NUMBER</p>
-      <h2 id="whatsapp-modal-title">LET'S<br><em>CONNECT.</em></h2>
-      <p class="modal-copy">Choose which number you want to message on WhatsApp.</p>
-      <a class="whatsapp-option" href="https://wa.me/201066517988" target="_blank" rel="noopener noreferrer"><span>01</span><strong>+20 106 651 7988</strong><span>↗</span></a>
-      <a class="whatsapp-option" href="https://wa.me/201125093884" target="_blank" rel="noopener noreferrer"><span>02</span><strong>+20 112 509 3884</strong><span>↗</span></a>
+
+      <h2 id="whatsapp-modal-title">
+        LET'S<br><em>CONNECT.</em>
+      </h2>
+
+      <p class="modal-copy">
+        Choose which number you want to message on WhatsApp.
+      </p>
+
+      <a class="whatsapp-option" href="https://wa.me/201066517988" target="_blank" rel="noopener noreferrer">
+        <span>01</span>
+        <strong>+20 106 651 7988</strong>
+        <span>↗</span>
+      </a>
+
+      <a class="whatsapp-option" href="https://wa.me/201125093884" target="_blank" rel="noopener noreferrer">
+        <span>02</span>
+        <strong>+20 112 509 3884</strong>
+        <span>↗</span>
+      </a>
+
     </div>
+
   </dialog>
+
   <script src="script.js" defer></script>
+
 </body>
 </html>
