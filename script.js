@@ -1,395 +1,515 @@
 
+/* =========================================================
+   CODEX PORTFOLIO — MAIN JAVASCRIPT
+   Google Apps Script Contact Form Integration
+========================================================= */
+
 'use strict';
 
-/* =========================================
-   CODEX PORTFOLIO CONFIGURATION
-========================================= */
+/* ================= CONFIGURATION ================= */
 
 const GOOGLE_SCRIPT_URL =
-  'https://script.google.com/macros/s/AKfycbyXadEXC4Ao1D5bd5dUq8GPbWsP9HneOZjZWUSjnuUj-mrg1c7iZ_WbYpolVGHOH8xlzg/exec';
+  'https://script.google.com/macros/s/AKfycbzqYFHc-C6rSYl-w2CtOpeVDG1wxbmi5jghGDCQaxeugOivUih0nz46wSKKO681E01oTQ/exec';
 
-/* =========================================
-   INTRO LOADER
-========================================= */
+const WHATSAPP_NUMBER = ''; // ضع رقم واتساب بصيغة دولية بدون +
 
-const intro = document.querySelector('.intro');
+/* ================= HELPERS ================= */
 
-window.addEventListener('load', () => {
-  if (intro) {
-    setTimeout(() => intro.classList.add('hide'), 1250);
-  }
+const $ = (selector, parent = document) =>
+  parent.querySelector(selector);
+
+const $$ = (selector, parent = document) =>
+  [...parent.querySelectorAll(selector)];
+
+function wait(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+function setStatus(element, message, type = 'info') {
+  if (!element) return;
+
+  element.textContent = message;
+  element.dataset.state = type;
+  element.classList.remove('success', 'error', 'loading');
+
+  if (type === 'success') element.classList.add('success');
+  if (type === 'error') element.classList.add('error');
+  if (type === 'loading') element.classList.add('loading');
+}
+
+/* ================= INITIALIZATION ================= */
+
+document.addEventListener('DOMContentLoaded', () => {
+  initIntro();
+  initReveal();
+  initCursor();
+  initNavigation();
+  initHeroParallax();
+  initCairoClock();
+  initPlayCards();
+  initTheme();
+  initWhatsAppModal();
+  initContactForm();
 });
 
-/* =========================================
-   SCROLL REVEAL
-========================================= */
+/* ================= INTRO ================= */
 
-const revealEls = document.querySelectorAll('.reveal');
+function initIntro() {
+  const intro = $('.intro, #intro, .preloader');
 
-if ('IntersectionObserver' in window) {
-  const revealObserver = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-        revealObserver.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.12 });
+  if (!intro) return;
 
-  revealEls.forEach(el => revealObserver.observe(el));
-} else {
-  revealEls.forEach(el => el.classList.add('visible'));
+  wait(700).then(() => {
+    intro.classList.add('is-hidden');
+
+    setTimeout(() => {
+      intro.remove();
+    }, 800);
+  });
 }
 
-/* =========================================
-   POINTER DETECTION
-========================================= */
+/* ================= SCROLL REVEAL ================= */
 
-const finePointer = window.matchMedia('(pointer: fine)');
+function initReveal() {
+  const elements = $$(
+    '[data-reveal], .reveal, .reveal-up, .reveal-left, .reveal-right'
+  );
 
-/* =========================================
-   CUSTOM CURSOR
-========================================= */
+  if (!elements.length) return;
 
-const dot = document.querySelector('.cursor-dot');
-const ring = document.querySelector('.cursor-ring');
-
-if (finePointer.matches && dot && ring) {
-  dot.style.opacity = '1';
-  ring.style.opacity = '1';
-
-  let x = 0;
-  let y = 0;
-  let rx = 0;
-  let ry = 0;
-  let animationFrame;
-
-  window.addEventListener('mousemove', event => {
-    x = event.clientX;
-    y = event.clientY;
-
-    dot.style.transform = `translate(${x}px, ${y}px)`;
-  });
-
-  function animateRing() {
-    rx += (x - rx) * 0.16;
-    ry += (y - ry) * 0.16;
-
-    ring.style.left = `${rx}px`;
-    ring.style.top = `${ry}px`;
-
-    animationFrame = requestAnimationFrame(animateRing);
+  if (!('IntersectionObserver' in window)) {
+    elements.forEach(el => el.classList.add('is-visible', 'visible'));
+    return;
   }
 
-  animateRing();
+  const observer = new IntersectionObserver(
+    entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible', 'visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.12 }
+  );
 
-  document.querySelectorAll('a, button').forEach(element => {
-    element.addEventListener('mouseenter', () => ring.classList.add('hover'));
-    element.addEventListener('mouseleave', () => ring.classList.remove('hover'));
+  elements.forEach(el => observer.observe(el));
+}
+
+/* ================= CUSTOM CURSOR ================= */
+
+function initCursor() {
+  const cursor = $('.custom-cursor, #cursor, .cursor');
+
+  if (!cursor || window.matchMedia('(pointer: coarse)').matches) return;
+
+  document.addEventListener('mousemove', event => {
+    cursor.style.left = `${event.clientX}px`;
+    cursor.style.top = `${event.clientY}px`;
   });
 
-  window.addEventListener('pagehide', () => {
-    cancelAnimationFrame(animationFrame);
+  $$('a, button, input, textarea, select').forEach(element => {
+    element.addEventListener('mouseenter', () => {
+      cursor.classList.add('active');
+    });
+
+    element.addEventListener('mouseleave', () => {
+      cursor.classList.remove('active');
+    });
   });
 }
 
-/* =========================================
-   MOBILE NAVIGATION
-========================================= */
+/* ================= NAVIGATION ================= */
 
-const menuBtn = document.querySelector('.menu-toggle');
-const nav = document.querySelector('.topbar nav');
+function initNavigation() {
+  const menuButton = $(
+    '.menu-toggle, #menu-toggle, .nav-toggle, .hamburger'
+  );
 
-if (menuBtn && nav) {
-  menuBtn.addEventListener('click', () => {
-    const isOpen = nav.classList.toggle('menu-open');
-    menuBtn.setAttribute('aria-expanded', String(isOpen));
+  const nav = $('.nav-links, .navbar-menu, #nav-menu, .navigation');
+
+  if (menuButton && nav) {
+    menuButton.addEventListener('click', () => {
+      const isOpen = nav.classList.toggle('active');
+      menuButton.classList.toggle('active', isOpen);
+      menuButton.setAttribute('aria-expanded', String(isOpen));
+    });
+
+    $$('a', nav).forEach(link => {
+      link.addEventListener('click', () => {
+        nav.classList.remove('active');
+        menuButton.classList.remove('active');
+        menuButton.setAttribute('aria-expanded', 'false');
+      });
+    });
+  }
+
+  $$('a[href^="#"]').forEach(link => {
+    link.addEventListener('click', event => {
+      const targetId = link.getAttribute('href');
+
+      if (!targetId || targetId === '#') return;
+
+      const target = $(targetId);
+      if (!target) return;
+
+      event.preventDefault();
+
+      target.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+      });
+    });
   });
 
-  nav.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', () => {
-      nav.classList.remove('menu-open');
-      menuBtn.setAttribute('aria-expanded', 'false');
+  const sections = $$('section[id]');
+
+  if ('IntersectionObserver' in window && sections.length) {
+    const observer = new IntersectionObserver(
+      entries => {
+        entries.forEach(entry => {
+          if (!entry.isIntersecting) return;
+
+          const id = entry.target.id;
+
+          $$('a[href^="#"]').forEach(link => {
+            link.classList.toggle(
+              'active',
+              link.getAttribute('href') === `#${id}`
+            );
+          });
+        });
+      },
+      { rootMargin: '-35% 0px -55% 0px' }
+    );
+
+    sections.forEach(section => observer.observe(section));
+  }
+}
+
+/* ================= HERO PARALLAX ================= */
+
+function initHeroParallax() {
+  const hero = $('.hero, #hero');
+
+  if (!hero || window.matchMedia('(pointer: coarse)').matches) return;
+
+  const layers = $$('[data-parallax]', hero);
+
+  if (!layers.length) return;
+
+  hero.addEventListener('mousemove', event => {
+    const rect = hero.getBoundingClientRect();
+
+    const x = (event.clientX - rect.left) / rect.width - 0.5;
+    const y = (event.clientY - rect.top) / rect.height - 0.5;
+
+    layers.forEach(layer => {
+      const strength = Number(layer.dataset.parallax) || 10;
+
+      layer.style.transform =
+        `translate(${x * strength}px, ${y * strength}px)`;
     });
+  });
+
+  hero.addEventListener('mouseleave', () => {
+    layers.forEach(layer => {
+      layer.style.transform = '';
+    });
+  });
+}
+
+/* ================= CAIRO CLOCK ================= */
+
+function initCairoClock() {
+  const clock = $('#cairo-clock, .cairo-clock, [data-cairo-clock]');
+
+  if (!clock) return;
+
+  function updateClock() {
+    clock.textContent = new Intl.DateTimeFormat('en-GB', {
+      timeZone: 'Africa/Cairo',
+      hour: '2-digit',
+      minute: '2-digit',
+      second: '2-digit',
+      hour12: true
+    }).format(new Date());
+  }
+
+  updateClock();
+  setInterval(updateClock, 1000);
+}
+
+/* ================= PLAY CARDS ================= */
+
+function initPlayCards() {
+  $$('[data-play], .play-card, .service-card').forEach(card => {
+    card.addEventListener('click', () => {
+      card.classList.toggle('active');
+    });
+  });
+}
+
+/* ================= THEME ================= */
+
+function initTheme() {
+  const themeButton = $(
+    '#theme-toggle, .theme-toggle, [data-theme-toggle]'
+  );
+
+  if (!themeButton) return;
+
+  const savedTheme = localStorage.getItem('codex-theme');
+
+  if (savedTheme === 'dark' || savedTheme === 'light') {
+    document.documentElement.dataset.theme = savedTheme;
+  }
+
+  themeButton.addEventListener('click', () => {
+    const currentTheme =
+      document.documentElement.dataset.theme || 'light';
+
+    const nextTheme = currentTheme === 'dark' ? 'light' : 'dark';
+
+    document.documentElement.dataset.theme = nextTheme;
+    localStorage.setItem('codex-theme', nextTheme);
+  });
+}
+
+/* ================= WHATSAPP MODAL ================= */
+
+function initWhatsAppModal() {
+  const modal = $('#whatsapp-modal, .whatsapp-modal');
+
+  const openButtons = $$(
+    '[data-open-whatsapp], #open-whatsapp, .open-whatsapp'
+  );
+
+  const closeButtons = $$(
+    '[data-close-whatsapp], #close-whatsapp, .close-whatsapp'
+  );
+
+  if (!modal) return;
+
+  openButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      modal.classList.add('active', 'open');
+      modal.setAttribute('aria-hidden', 'false');
+    });
+  });
+
+  closeButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      modal.classList.remove('active', 'open');
+      modal.setAttribute('aria-hidden', 'true');
+    });
+  });
+
+  modal.addEventListener('click', event => {
+    if (event.target === modal) {
+      modal.classList.remove('active', 'open');
+      modal.setAttribute('aria-hidden', 'true');
+    }
   });
 
   document.addEventListener('keydown', event => {
     if (event.key === 'Escape') {
-      nav.classList.remove('menu-open');
-      menuBtn.setAttribute('aria-expanded', 'false');
+      modal.classList.remove('active', 'open');
+      modal.setAttribute('aria-hidden', 'true');
     }
   });
 }
 
-/* =========================================
-   HERO PARALLAX
-========================================= */
+/* ================= CONTACT FORM ================= */
 
-const hero = document.querySelector('.hero-title-wrap');
+function initContactForm() {
+  const form = $('#contact-form');
 
-if (hero && finePointer.matches) {
-  hero.addEventListener('mousemove', event => {
-    const rect = hero.getBoundingClientRect();
-
-    if (!rect.width || !rect.height) return;
-
-    const dx = (event.clientX - rect.left - rect.width / 2) / rect.width;
-    const dy = (event.clientY - rect.top - rect.height / 2) / rect.height;
-
-    hero.style.transform = `translate(${dx * 7}px, ${dy * 5}px)`;
-  });
-
-  hero.addEventListener('mouseleave', () => {
-    hero.style.transform = 'translate(0, 0)';
-  });
-}
-
-/* =========================================
-   CAIRO CLOCK
-========================================= */
-
-const clockEl = document.getElementById('local-time');
-
-function updateCairoClock() {
-  if (!clockEl) return;
-
-  try {
-    clockEl.textContent = new Intl.DateTimeFormat('en-GB', {
-      timeZone: 'Africa/Cairo',
-      hour: '2-digit',
-      minute: '2-digit',
-      hour12: false
-    }).format(new Date());
-  } catch (error) {
-    clockEl.textContent = '--:--';
-  }
-}
-
-updateCairoClock();
-
-const clockInterval = setInterval(updateCairoClock, 30000);
-
-window.addEventListener('pagehide', () => {
-  clearInterval(clockInterval);
-});
-
-/* =========================================
-   PLAY CARD INTERACTION
-========================================= */
-
-const playCard = document.getElementById('play-card');
-
-if (playCard && finePointer.matches) {
-  const orb = playCard.querySelector('.play-card-orb');
-
-  playCard.addEventListener('mousemove', event => {
-    const rect = playCard.getBoundingClientRect();
-
-    if (!rect.width || !rect.height) return;
-
-    const px = (event.clientX - rect.left) / rect.width - 0.5;
-    const py = (event.clientY - rect.top) / rect.height - 0.5;
-
-    playCard.style.transform =
-      `perspective(900px) rotateY(${px * 8}deg) rotateX(${-py * 7}deg)`;
-
-    if (orb) {
-      orb.style.transform =
-        `translate(${px * 24}px, ${py * 20}px) scale(1.05)`;
-    }
-  });
-
-  playCard.addEventListener('mouseleave', () => {
-    playCard.style.transform = '';
-
-    if (orb) orb.style.transform = '';
-  });
-}
-
-/* =========================================
-   THEME SWITCH
-========================================= */
-
-const themeToggle = document.getElementById('theme-toggle');
-const THEME_KEY = 'codex-portfolio-theme';
-
-function applyTheme(theme) {
-  const isDark = theme === 'dark';
-
-  document.body.classList.toggle('body-dark', isDark);
-
-  if (themeToggle) {
-    themeToggle.textContent = isDark
-      ? 'SWITCH THEME ◑'
-      : 'SWITCH THEME ◐';
-
-    themeToggle.setAttribute('aria-pressed', String(isDark));
-  }
-}
-
-let savedTheme = 'light';
-
-try {
-  savedTheme = localStorage.getItem(THEME_KEY) || 'light';
-} catch (error) {
-  savedTheme = 'light';
-}
-
-applyTheme(savedTheme);
-
-themeToggle?.addEventListener('click', () => {
-  const isDark = document.body.classList.toggle('body-dark');
-  const newTheme = isDark ? 'dark' : 'light';
-
-  try {
-    localStorage.setItem(THEME_KEY, newTheme);
-  } catch (error) {
-    // Theme remains active for the current page.
+  if (!form) {
+    console.warn('CODEX: Contact form not found.');
+    return;
   }
 
-  applyTheme(newTheme);
-});
+  const statusElement = $('#form-status', form.parentElement) ||
+    $('#form-status');
 
-/* =========================================
-   WHATSAPP DIALOG
-========================================= */
+  const submitButton = $(
+    'button[type="submit"], input[type="submit"]',
+    form
+  );
 
-const whatsappDialog = document.getElementById('whatsapp-modal');
-
-document.querySelectorAll('[data-open-whatsapp]').forEach(trigger => {
-  trigger.addEventListener('click', () => {
-    if (!whatsappDialog) return;
-
-    if (typeof whatsappDialog.showModal === 'function') {
-      if (!whatsappDialog.open) whatsappDialog.showModal();
-    }
-  });
-});
-
-document.querySelectorAll('[data-close-whatsapp]').forEach(trigger => {
-  trigger.addEventListener('click', () => {
-    whatsappDialog?.close();
-  });
-});
-
-whatsappDialog?.addEventListener('click', event => {
-  if (event.target === whatsappDialog) {
-    whatsappDialog.close();
-  }
-});
-
-/* =========================================
-   CONTACT FORM
-========================================= */
-
-const inquiryForm = document.getElementById('contact-form');
-const inquiryStatus = document.getElementById('form-status');
-
-function setFormStatus(message, state) {
-  if (!inquiryStatus) return;
-
-  inquiryStatus.textContent = message;
-  inquiryStatus.dataset.state = state;
-}
-
-function normalizePhone(value) {
-  return String(value || '').replace(/\D/g, '');
-}
-
-if (inquiryForm) {
-  const phoneField = inquiryForm.elements.namedItem('phone');
-
-  phoneField?.addEventListener('input', () => {
-    phoneField.setCustomValidity('');
-  });
-
-  inquiryForm.addEventListener('submit', async event => {
+  form.addEventListener('submit', async event => {
     event.preventDefault();
 
-    if (!inquiryForm.reportValidity()) return;
+    if (form.dataset.submitting === 'true') return;
 
-    const phoneDigits = normalizePhone(phoneField?.value);
+    const formData = new FormData(form);
 
-    if (phoneDigits.length < 8 || phoneDigits.length > 15) {
-      phoneField?.setCustomValidity('Please enter a valid phone number.');
-      phoneField?.reportValidity();
+    const payload = {
+      name: getFormValue(formData, 'name'),
+      phone: getFormValue(formData, 'phone'),
+      email: getFormValue(formData, 'email'),
+      projectType: getFormValue(formData, 'projectType'),
+      budget: getFormValue(formData, 'budget'),
+      details: getFormValue(formData, 'details')
+    };
+
+    const validationError = validateInquiry(payload);
+
+    if (validationError) {
+      setStatus(statusElement, validationError, 'error');
       return;
     }
 
-    if (
-      !GOOGLE_SCRIPT_URL.startsWith(
-        'https://script.google.com/macros/s/'
-      ) ||
-      GOOGLE_SCRIPT_URL.includes('PASTE_')
-    ) {
-      setFormStatus(
-        'Contact form connection is not configured.',
-        'error'
-      );
-      return;
-    }
-
-    const submitButton = inquiryForm.querySelector('[type="submit"]');
+    form.dataset.submitting = 'true';
 
     if (submitButton) {
       submitButton.disabled = true;
-      submitButton.setAttribute('aria-busy', 'true');
+      submitButton.dataset.originalText =
+        submitButton.textContent || submitButton.value || '';
+
+      if (submitButton.tagName === 'INPUT') {
+        submitButton.value = 'Sending...';
+      } else {
+        submitButton.textContent = 'Sending...';
+      }
     }
 
-    setFormStatus('Sending your inquiry...', 'loading');
+    setStatus(statusElement, 'Sending your inquiry...', 'loading');
 
     try {
-      const payload = Object.fromEntries(
-        new FormData(inquiryForm).entries()
-      );
+      await sendInquiry(payload);
 
-      /*
-       * Google Apps Script web apps commonly require no-cors
-       * for this cross-origin form submission.
-       *
-       * An opaque response cannot confirm successful delivery.
-       */
-
-      await fetch(GOOGLE_SCRIPT_URL, {
-        method: 'POST',
-        mode: 'no-cors',
-        body: new URLSearchParams(payload)
-      });
-
-      setFormStatus(
-        'Your request has been sent. Thank you for contacting CODEX!',
+      setStatus(
+        statusElement,
+        'Thank you! Your inquiry has been submitted.',
         'success'
       );
 
-      inquiryForm.reset();
+      form.reset();
 
     } catch (error) {
-      console.error('Inquiry submission error:', error);
+      console.error('CODEX inquiry error:', error);
 
-      setFormStatus(
-        'Could not send your inquiry. Please contact us through WhatsApp.',
+      setStatus(
+        statusElement,
+        'Unable to submit your inquiry. Please try again or contact us on WhatsApp.',
         'error'
       );
 
     } finally {
+      form.dataset.submitting = 'false';
+
       if (submitButton) {
         submitButton.disabled = false;
-        submitButton.removeAttribute('aria-busy');
+
+        if (submitButton.tagName === 'INPUT') {
+          submitButton.value = submitButton.dataset.originalText;
+        } else {
+          submitButton.textContent = submitButton.dataset.originalText;
+        }
       }
     }
   });
 }
 
-/* =========================================
-   ACCESSIBILITY: REDUCED MOTION
-========================================= */
+function getFormValue(formData, name) {
+  const value = formData.get(name);
 
-const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  if (value === null || typeof value !== 'string') return '';
 
-if (reducedMotion.matches) {
-  document.querySelectorAll('.reveal').forEach(element => {
-    element.classList.add('visible');
-  });
+  return value.trim();
 }
 
-console.info('CODEX Portfolio initialized successfully.');
+function validateInquiry(data) {
+  if (!data.name) {
+    return 'Please enter your name.';
+  }
+
+  if (!data.phone) {
+    return 'Please enter your phone number.';
+  }
+
+  const phoneDigits = data.phone.replace(/\D/g, '');
+
+  if (phoneDigits.length < 7) {
+    return 'Please enter a valid phone number.';
+  }
+
+  if (data.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)) {
+    return 'Please enter a valid email address.';
+  }
+
+  if (!data.projectType) {
+    return 'Please select your project type.';
+  }
+
+  if (!data.details) {
+    return 'Please describe your project.';
+  }
+
+  return null;
+}
+
+/* ================= GOOGLE APPS SCRIPT REQUEST ================= */
+
+async function sendInquiry(payload) {
+  if (!GOOGLE_SCRIPT_URL || !GOOGLE_SCRIPT_URL.endsWith('/exec')) {
+    throw new Error('Google Apps Script URL is not configured correctly.');
+  }
+
+  const body = new URLSearchParams();
+
+  Object.entries(payload).forEach(([key, value]) => {
+    body.append(key, String(value ?? ''));
+  });
+
+  /*
+    Google Apps Script redirects POST requests.
+    no-cors makes the browser response opaque, so it cannot confirm
+    whether Google Sheets saved the inquiry.
+  */
+
+  const response = await fetch(GOOGLE_SCRIPT_URL, {
+    method: 'POST',
+    mode: 'no-cors',
+    body
+  });
+
+  /*
+    An opaque response does not expose the server's HTTP status or JSON.
+    This only confirms that the browser fetch completed without a
+    network-level rejection. Verify actual saving in Google Sheets.
+  */
+
+  if (response.type !== 'opaque' && !response.ok) {
+    throw new Error(`Server returned HTTP ${response.status}`);
+  }
+
+  return true;
+}
+
+/* ================= WHATSAPP DIRECT LINK ================= */
+
+function openWhatsApp(message = '') {
+  if (!WHATSAPP_NUMBER) {
+    console.warn('Set WHATSAPP_NUMBER in script.js first.');
+    return;
+  }
+
+  const url =
+    `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+
+  window.open(url, '_blank', 'noopener,noreferrer');
+}
+
+/* ================= GLOBAL ERROR HANDLING ================= */
+
+window.addEventListener('error', event => {
+  console.error('CODEX JavaScript error:', event.message);
+});
+
+window.addEventListener('unhandledrejection', event => {
+  console.error('CODEX async error:', event.reason);
+});
